@@ -75,6 +75,7 @@ DEV_TOOLS=(
     iterm2
     sfdx
     visual-studio-code
+    fig
 )
 
 echo "Installing dev tools..."
@@ -103,6 +104,12 @@ UTILITY_APPS=(
     mimestream
     itsycal
     alt-tab
+    latest
+    hiddenbar
+    figma
+    soqlxplorer
+    shottr
+    keka
 )
 
 echo "Installing utility apps..."
