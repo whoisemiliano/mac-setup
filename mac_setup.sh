@@ -110,6 +110,7 @@ UTILITY_APPS=(
     soqlxplorer
     shottr
     keka
+    keystore-explorer
 )
 
 echo "Installing utility apps..."
