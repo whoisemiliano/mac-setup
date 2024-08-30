@@ -37,11 +37,9 @@ PACKAGES=(
 echo "Installing packages..."
 brew install ${PACKAGES[@]}
 
-
 BROWSERS=(
     google-chrome
-    firefox
-    brave-browser
+    arc
 )
 
 echo "Installing browsers apps..."
@@ -50,7 +48,6 @@ brew install --cask ${BROWSERS[@]}
 
 API_TOOLS=(
     postman
-    soapui
 )
 
 echo "Installing api tools..."
@@ -58,9 +55,7 @@ brew install --cask ${API_TOOLS[@]}
 
 
 COMMUNICATION_TOOLS=(
-    google-chat
     slack
-    microsoft-teams
     zoom
     telegram
     whatsapp
@@ -73,9 +68,8 @@ brew install --cask ${COMMUNICATION_TOOLS[@]}
 DEV_TOOLS=(
     fork
     iterm2
-    sfdx
+    sf
     visual-studio-code
-    fig
 )
 
 echo "Installing dev tools..."
@@ -92,17 +86,24 @@ OFFICE_APPS=(
 echo "Installing office apps..."
 brew install --cask ${OFFICE_APPS[@]}
 
+EMAIL_CLIENTS=(
+    mimestream
+    superhuman
+)
+
+echo "Installing email clients apps..."
+brew install --cask ${EMAIL_CLIENTS[@]}
+
 UTILITY_APPS=(
     appcleaner
     caffeine
     scroll-reverser
     rectangle
-    jumpcut
+    raycast
     istat-menus
     beyond-compare
     notion
-    mimestream
-    itsycal
+    notion-calendar
     alt-tab
     latest
     hiddenbar
@@ -123,6 +124,28 @@ MULTIMEDIA_APPS=(
 
 echo "Installing multimedia apps..."
 brew install --cask ${MULTIMEDIA_APPS[@]}
+
+#Remove All Items From Dock
+dockutil --remove all
+killall Dock
+
+#Setup Dock
+dockutil --add /Applications/Mimestream.app
+dockutil --add /Applications/Superhuman.app
+dockutil --add /Applications/Notion.app
+dockutil --add /Applications/Notion\ Calendar.app
+dockutil --add /Applications/Google\ Chrome.app
+dockutil --add /Applications/iTerm.app
+dockutil --add /Applications/Visual\ Studio\ Code.app
+dockutil --add /Applications/Spotify.app
+dockutil --add /Applications/Figma.app
+dockutil --add /Applications/Slack.app
+dockutil --add /Applications/Messages.app
+dockutil --add /Applications/Telegram.app
+dockutil --add /Applications/zoom.us.app
+dockutil --add /Applications/Notes.app
+killall Dock
+
 
 # Setup code path
 
