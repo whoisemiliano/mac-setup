@@ -183,6 +183,14 @@ code --install-extension Nik-Creation.lwc-salesforce
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+
+#Install Lazy VIM
+mv ~/.config/nvim{,.bak}
+mv ~/.local/share/nvim{,.bak}
+mv ~/.local/state/nvim{,.bak}
+mv ~/.cache/nvim{,.bak}
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
 # Install mo-dx-plugin used by Salesforce DX Code Companion VS Code Extension
 echo y | sfdx plugins:install mo-dx-plugin
 
