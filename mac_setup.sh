@@ -192,40 +192,14 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 killall Finder
 
 
-# Setup code path
-
-cat << EOF >> ~/.bash_profile
-# Add Visual Studio Code (code)
-export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-EOF
-
+# Setup Cursor path
 cat << EOF >> ~/.zprofile
-# Add Visual Studio Code (code)
-export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+# Add Cursor (cursor)
+export PATH="\$PATH:/Applications/Cursor.app/Contents/Resources/app/bin"
 EOF
-
-# Install VS Code Extensions
-
-code --install-extension salesforce.salesforcedx-vscode-expanded
-code --install-extension mechatroner.rainbow-csv
-code --install-extension esbenp.prettier-vscode
-code --install-extension christian-kohler.path-intellisense
-code --install-extension quicktype.quicktype
-code --install-extension VisualStudioExptTeam.vscodeintellicode
-code --install-extension ecmel.vscode-html-css
-code --install-extension eamodio.gitlens
-code --install-extension sleistner.vscode-fileutils
-code --install-extension dbaeumer.vscode-eslint
-code --install-extension streetsidesoftware.code-spell-checker
-code --install-extension aaron-bond.better-comments
-code --install-extension formulahendry.auto-close-tag
-code --install-extension vscode-icons-team.vscode-icons
-code --install-extension MohithShrivastava.dx-code-companion
-code --install-extension VignaeshRamA.sfdx-package-xml-generator
-code --install-extension Nik-Creation.lwc-salesforce
 
 # Install OhMyZsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Configure ZSH plugins
 echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
@@ -239,5 +213,11 @@ mv ~/.local/state/nvim{,.bak}
 mv ~/.cache/nvim{,.bak}
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
+
+brew upgrade
+brew cleanup
+
+echo "Add this SSH key to GitHub:"
+cat ~/.ssh/id_ed25519.pub
 
 echo "Setup complete ✅"
