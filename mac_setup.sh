@@ -6,9 +6,6 @@
 
 echo "Setup starting 💻"
 
-# Install Rosetta
-sudo softwareupdate --install-rosetta --agree-to-license
-
 # Install Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -36,15 +33,13 @@ ssh-add ~/.ssh/id_ed25519
 
 
 PACKAGES=(
-    openjdk@11
-    node
+    openjdk
+    bun
     python3
+    uv
     jq
     ngrok
     git
-    mas
-    watchman
-    hub
     dockutil
     tree
     wget
@@ -58,7 +53,7 @@ echo "Installing packages..."
 brew install ${PACKAGES[@]}
 
 CLIS=(
-    vercel-cli
+    railway
     render
     gh
 )
@@ -69,18 +64,11 @@ brew install ${CLIS[@]}
 BROWSERS=(
     google-chrome
     arc
+    thebrowsercompany-dia
 )
 
 echo "Installing browsers apps..."
 brew install --cask ${BROWSERS[@]}
-
-
-API_TOOLS=(
-    postman
-)
-
-echo "Installing api tools..."
-brew install --cask ${API_TOOLS[@]}
 
 
 COMMUNICATION_TOOLS=(
@@ -98,8 +86,7 @@ DEV_TOOLS=(
     fork
     cmux
     sf
-    cursor
-    tableplus
+    conductor
     proxyman
     orbstack
 )
@@ -107,36 +94,18 @@ DEV_TOOLS=(
 echo "Installing dev tools..."
 brew install --cask ${DEV_TOOLS[@]}
 
-OFFICE_APPS=(
-    microsoft-auto-update
-    microsoft-excel
-)
-
-echo "Installing office apps..."
-brew install --cask ${OFFICE_APPS[@]}
-
-EMAIL_CLIENTS=(
-    superhuman
-)
-
-echo "Installing email clients apps..."
-brew install --cask ${EMAIL_CLIENTS[@]}
-
 UTILITY_APPS=(
     appcleaner
     caffeine
     scroll-reverser
     raycast
-    beyond-compare
     notion
     notion-calendar
     latest
     hiddenbar
     figma
-    soqlxplorer
     shottr
     keka
-    keystore-explorer
 )
 
 echo "Installing utility apps..."
@@ -150,53 +119,71 @@ MULTIMEDIA_APPS=(
 echo "Installing multimedia apps..."
 brew install --cask ${MULTIMEDIA_APPS[@]}
 
+AI_TOOLS=(
+    rtk
+)
+
+echo "Installing AI tools..."
+brew install ${AI_TOOLS[@]}
+
 AI_APPS=(
     wispr-flow
     claude
     chatgpt
     codex
     claude-code
+    opencode-desktop
 )
 
 echo "Installing AI apps..."
 brew install --cask ${AI_APPS[@]}
 
-# npm global packages
-echo "Installing npm global packages..."
-npm install -g typescript ts-node
+# Bun global packages
+echo "Installing Bun global packages..."
+bun add --global typescript ts-node
 
-#Remove All Items From Dock
+# Set up Dock
 dockutil --remove all
-killall Dock
-
-#Setup Dock
-dockutil --add /Applications/Superhuman.app
-dockutil --add /Applications/Notion.app
-dockutil --add /Applications/Notion\ Calendar.app
-dockutil --add /Applications/Google\ Chrome.app
-dockutil --add /Applications/Cursor.app
-dockutil --add /Applications/Spotify.app
-dockutil --add /Applications/Figma.app
-dockutil --add /Applications/Slack.app
-dockutil --add /Applications/zoom.us.app
-dockutil --add /Applications/Notes.app
+dockutil --add "/Applications/Arc.app"
+dockutil --add "/Applications/Notion.app"
+dockutil --add "/Applications/Notion Calendar.app"
+dockutil --add "/Applications/Fork.app"
+dockutil --add "/Applications/Conductor.app"
+dockutil --add "/Applications/cmux.app"
+dockutil --add "/Applications/Spotify.app"
+dockutil --add "/Applications/Slack.app"
+dockutil --add "/Applications/zoom.us.app"
+dockutil --add "/System/Applications/Notes.app"
 killall Dock
 
 # macOS System Defaults
 echo "Configuring macOS defaults..."
+
+# Set wallpaper
+WALLPAPER_URL="https://misc-assets.raycast.com/wallpapers/glaze_1.heic"
+WALLPAPER_PATH="$HOME/Pictures/glaze_1.heic"
+mkdir -p "$HOME/Pictures"
+curl -fsSL "$WALLPAPER_URL" -o "$WALLPAPER_PATH"
+osascript -e "tell application \"System Events\" to set picture of every desktop to POSIX file \"$WALLPAPER_PATH\""
+
+# Enable Dark Mode
+osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+
+# Disable Siri
+defaults write com.apple.assistant.support "Assistant Enabled" -bool false
+defaults write com.apple.Siri VoiceTriggerUserEnabled -bool false
+defaults write com.apple.Siri StatusMenuVisible -bool false
+defaults write com.apple.Siri UserHasDeclinedEnable -bool true
+
 defaults write com.apple.finder AppleShowAllFiles YES
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeatDelay -int 15
 defaults write com.apple.finder ShowPathbar -bool true
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+killall Siri 2>/dev/null || true
+killall SystemUIServer
 killall Finder
 
-
-# Setup Cursor path
-cat << EOF >> ~/.zprofile
-# Add Cursor (cursor)
-export PATH="\$PATH:/Applications/Cursor.app/Contents/Resources/app/bin"
-EOF
 
 # Install OhMyZsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
