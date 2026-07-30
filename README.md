@@ -1,39 +1,83 @@
-# mac-setup
+<h1 align="center">mac-setup</h1>
 
-Script to set up a new Apple machine from scratch.
+<p align="center">
+  One command. Fresh Mac. Ready to build.
+</p>
 
-## Run
+<p align="center">
+  <img alt="macOS 14+" src="https://img.shields.io/badge/macOS-14%2B-000000?logo=apple&logoColor=white">
+  <img alt="Apple Silicon" src="https://img.shields.io/badge/Apple-Silicon-8A2BE2">
+  <img alt="Bash" src="https://img.shields.io/badge/shell-Bash-4EAA25?logo=gnubash&logoColor=white">
+</p>
+
+An opinionated setup script for turning a new Apple silicon Mac into my development environment.
+
+## ⚡ Quick start
+
+Open Terminal and run:
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/whoisemiliano/mac-setup/master/mac_setup.sh)"
 ```
 
-> The script will prompt for your Git name and email at the start — everything else runs automatically.
+The script asks for your Git name and email. The rest of the setup runs automatically.
 
-## What it does
+> [!IMPORTANT]
+> This script is designed for a fresh Apple silicon Mac running macOS 14 or newer. Review the script before running it on an existing machine.
 
-- Installs **Homebrew**
-- Configures **Git** (name, email, default branch, pull rebase)
-- Generates an **SSH key** (ed25519) and adds it to the agent
-- Installs packages, CLIs, and casks grouped by category:
+## 🧰 The toolkit
 
 | Category | Tools |
 |---|---|
-| Packages | OpenJDK (latest), Bun, Python, uv, Git, jq, ngrok, dockutil, tree, wget, lazygit, lazydocker, and Zsh plugins |
-| CLIs | Railway, Render, gh |
+| Core | OpenJDK (latest), Bun, Python, uv, Git, jq, ngrok, tree, wget |
+| Terminal | lazygit, lazydocker, zsh-autosuggestions, zsh-syntax-highlighting |
+| CLIs | Railway, Render, GitHub CLI |
 | Browsers | Google Chrome, Arc, Dia |
 | Communication | Slack, Zoom, Telegram, WhatsApp |
-| Dev Tools | Conductor, Fork, Proxyman, OrbStack, cmux, sf |
-| Utilities | Raycast, Notion, Notion Calendar, Figma, Shottr, Keka, and more |
-| Multimedia | Spotify, VLC |
-| AI Apps & Tools | Claude, ChatGPT, Wispr Flow, Codex, Claude Code, OpenCode, RTK |
+| Development | Conductor, Fork, Proxyman, OrbStack, cmux, Salesforce CLI |
+| Productivity | Raycast, Notion, Notion Calendar, Figma, Shottr, Keka |
+| Utilities | AppCleaner, Caffeine, Scroll Reverser, Latest, Hidden Bar |
+| Media | Spotify, VLC |
+| AI | Claude, ChatGPT, Wispr Flow, Codex, Claude Code, OpenCode, RTK |
 
-- Sets up the **Dock** with Arc, Notion, Notion Calendar, Fork, Conductor, cmux, Spotify, Slack, Zoom, and Notes
-- Downloads and applies the **Glaze wallpaper**
-- Enables **Dark Mode** and disables **Siri**
-- Applies **macOS defaults** (hidden files, key repeat, path bar, file extensions)
-- Installs **OhMyZsh** with `zsh-autosuggestions` and `zsh-syntax-highlighting`
-- Installs **LazyVim**
-- Installs Bun globals: `typescript`, `ts-node`
-- Runs `brew upgrade` and `brew cleanup`
-- Prints your **SSH public key** to add to GitHub
+TypeScript and `ts-node` are also installed globally with Bun.
+
+## ✨ macOS, personalized
+
+The script configures more than development tools:
+
+- Applies the [Glaze wallpaper](https://misc-assets.raycast.com/wallpapers/glaze_1.heic)
+- Enables Dark Mode
+- Disables Siri and its voice trigger
+- Shows hidden files and filename extensions in Finder
+- Enables the Finder path bar
+- Sets a faster keyboard repeat rate
+
+### Dock
+
+The Dock is cleared and rebuilt in this order:
+
+`Arc` → `Notion` → `Notion Calendar` → `Fork` → `Conductor` → `cmux` → `Spotify` → `Slack` → `Zoom` → `Notes`
+
+## 🛠️ Developer environment
+
+The setup also:
+
+1. Installs Homebrew and adds it to the shell environment.
+2. Configures Git with `main` as the default branch and pull rebasing enabled.
+3. Generates an Ed25519 SSH key and adds it to the SSH agent.
+4. Installs Oh My Zsh and enables syntax highlighting and autosuggestions.
+5. Installs the LazyVim starter configuration.
+6. Upgrades installed Homebrew packages and cleans the download cache.
+
+At the end, the script prints the generated SSH public key so it can be added to GitHub.
+
+## 🔐 Permissions
+
+macOS may ask for permission when Terminal controls System Events to apply Dark Mode and the wallpaper. Approve the prompt so those personalization steps can finish.
+
+Rosetta is not installed automatically. If an Intel-only app ever needs it, macOS will offer to install it at that time.
+
+## 🎛️ Make it yours
+
+The package and application lists live in [`mac_setup.sh`](./mac_setup.sh). Add, remove, or reorder entries there to change what gets installed and how the Dock is arranged.
