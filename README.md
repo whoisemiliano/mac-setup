@@ -12,7 +12,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/whoisemiliano/mac-setup/
 
 ## What it does
 
-- Installs **Rosetta** and **Homebrew**
+- Installs **Homebrew**
 - Configures **Git** (name, email, default branch, pull rebase)
 - Generates an **SSH key** (ed25519) and adds it to the agent
 - Installs packages, CLIs, and casks grouped by category:
