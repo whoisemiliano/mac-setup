@@ -19,23 +19,21 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/whoisemiliano/mac-setup/
 
 | Category | Tools |
 |---|---|
-| Packages | openjdk, node, python3, git, jq, wget, lazygit, lazydocker, mas, watchman, and more |
-| CLIs | vercel, render, gh |
-| Browsers | Google Chrome, Arc |
-| API Tools | Postman |
+| Packages | OpenJDK (latest), Bun, Python, uv, Git, jq, ngrok, dockutil, tree, wget, lazygit, lazydocker, and Zsh plugins |
+| CLIs | Railway, Render, gh |
+| Browsers | Google Chrome, Arc, Dia |
 | Communication | Slack, Zoom, Telegram, WhatsApp |
-| Dev Tools | Cursor, Fork, TablePlus, Proxyman, OrbStack, cmux, sf |
-| Office | Microsoft Excel |
-| Email | Superhuman |
+| Dev Tools | Conductor, Fork, Proxyman, OrbStack, cmux, sf |
 | Utilities | Raycast, Notion, Notion Calendar, Figma, Shottr, Keka, and more |
 | Multimedia | Spotify, VLC |
-| AI Apps | Claude, ChatGPT, Wispr Flow, Codex, Claude Code |
+| AI Apps & Tools | Claude, ChatGPT, Wispr Flow, Codex, Claude Code, OpenCode, RTK |
 
-- Sets up the **Dock** with a curated app list
+- Sets up the **Dock** with Arc, Notion, Notion Calendar, Fork, Conductor, cmux, Spotify, Slack, Zoom, and Notes
+- Downloads and applies the **Glaze wallpaper**
+- Enables **Dark Mode** and disables **Siri**
 - Applies **macOS defaults** (hidden files, key repeat, path bar, file extensions)
-- Configures the **Cursor** CLI path
 - Installs **OhMyZsh** with `zsh-autosuggestions` and `zsh-syntax-highlighting`
 - Installs **LazyVim**
-- Installs npm globals: `typescript`, `ts-node`
+- Installs Bun globals: `typescript`, `ts-node`
 - Runs `brew upgrade` and `brew cleanup`
 - Prints your **SSH public key** to add to GitHub
