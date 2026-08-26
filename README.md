@@ -34,7 +34,7 @@ The script asks for your Git name and email. The rest of the setup runs automati
 | CLIs | Railway, Render, GitHub CLI |
 | Browsers | Google Chrome, Arc, Dia |
 | Communication | Slack, Zoom, Telegram, WhatsApp |
-| Development | Conductor, Fork, Proxyman, OrbStack, cmux, Salesforce CLI |
+| Development | Ghostty, Proxyman, OrbStack, herdr, Salesforce CLI |
 | Productivity | Raycast, Notion, Notion Calendar, Figma, Shottr, Keka |
 | Utilities | AppCleaner, Caffeine, Scroll Reverser, Latest, Hidden Bar |
 | Media | Spotify, VLC |
@@ -57,7 +57,7 @@ The script configures more than development tools:
 
 The Dock is cleared and rebuilt in this order:
 
-`Arc` → `Notion` → `Notion Calendar` → `Fork` → `Conductor` → `cmux` → `Spotify` → `Slack` → `Zoom` → `Notes`
+`Arc` → `Notion` → `Notion Calendar` → `Ghostty` → `Spotify` → `Slack` → `Zoom` → `Notes`
 
 ## 🛠️ Developer environment
 

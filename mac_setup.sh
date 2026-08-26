@@ -44,7 +44,6 @@ PACKAGES=(
     tree
     wget
     lazydocker
-    lazygit
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
@@ -83,16 +82,22 @@ brew install --cask ${COMMUNICATION_TOOLS[@]}
 
 
 DEV_TOOLS=(
-    fork
-    cmux
     sf
-    conductor
     proxyman
     orbstack
+    ghostty
 )
 
 echo "Installing dev tools..."
 brew install --cask ${DEV_TOOLS[@]}
+
+DEV_CLI_TOOLS=(
+    herdr
+    lazygit
+)
+
+echo "Installing dev CLI tools..."
+brew install ${DEV_CLI_TOOLS[@]}
 
 UTILITY_APPS=(
     appcleaner
@@ -101,6 +106,7 @@ UTILITY_APPS=(
     raycast
     notion
     notion-calendar
+    obsidian
     latest
     hiddenbar
     figma
@@ -121,6 +127,7 @@ brew install --cask ${MULTIMEDIA_APPS[@]}
 
 AI_TOOLS=(
     rtk
+    opencode
 )
 
 echo "Installing AI tools..."
@@ -138,22 +145,31 @@ AI_APPS=(
 echo "Installing AI apps..."
 brew install --cask ${AI_APPS[@]}
 
+# Wire herdr into the agent CLIs.
+# Each integration expects its agent config directory to already exist,
+# which is not the case before the agent has been run once.
+echo "Installing herdr integrations..."
+mkdir -p "$HOME/.claude" "$HOME/.codex" "$HOME/.config/opencode"
+for agent in claude codex opencode; do
+    herdr integration install "$agent" || echo "herdr integration install $agent failed, skipping"
+done
+
+# Run the herdr server now and at login
+brew services start herdr
+
 # Bun global packages
 echo "Installing Bun global packages..."
 bun add --global typescript ts-node
 
 # Set up Dock
 dockutil --remove all
-dockutil --add "/Applications/Arc.app"
+dockutil --add "/Applications/Dia.app"
 dockutil --add "/Applications/Notion.app"
 dockutil --add "/Applications/Notion Calendar.app"
-dockutil --add "/Applications/Fork.app"
-dockutil --add "/Applications/Conductor.app"
-dockutil --add "/Applications/cmux.app"
+dockutil --add "/Applications/Ghostty.app"
 dockutil --add "/Applications/Spotify.app"
 dockutil --add "/Applications/Slack.app"
-dockutil --add "/Applications/zoom.us.app"
-dockutil --add "/System/Applications/Notes.app"
+dockutil --add "/Applications/Obsidian.app"
 killall Dock
 
 # macOS System Defaults
